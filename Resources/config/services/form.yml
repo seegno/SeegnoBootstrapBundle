@@ -1,0 +1,14 @@
+parameters:
+    seegno_bootstrap.form_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\FormType
+    seegno_bootstrap.button_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\ButtonType
+
+services:
+    seegno_bootstrap.form_type_extension:
+        class: %seegno_bootstrap.form_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: form }
+
+    seegno_bootstrap.button_type_extension:
+        class: %seegno_bootstrap.button_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: button }

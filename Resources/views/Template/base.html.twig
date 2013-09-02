@@ -1,0 +1,61 @@
+{% block doctype %}
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ app.request.locale }}"> <!--<![endif]-->
+{% endblock doctype %}
+{% block head %}
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}Welcome!{% endblock title %}</title>
+
+{% spaceless %}
+    {% block metadata %}
+        <meta name="viewport" content="{% block viewport %}width=device-width, initial-scale=1.0{% endblock viewport %}">
+        <meta name="description" content="{% block description %}{% endblock description %}">
+        <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
+        <meta name="author" content="{% block author %}{% endblock author %}">
+    {% endblock metadata %}
+
+    {% block favicon %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% endblock favicon %}
+
+    {% block stylesheets %}
+        {% stylesheets
+            'bootstrap/less/bootstrap.less'
+        %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock stylesheets %}
+
+    {% block head_javascripts %}
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="{{ asset('bootstrap/assets/js/html5shiv.js') }}"></script>
+            <script src="{{ asset('bootstrap/assets/js/respond.min.js') }}"></script>
+        <![endif]-->
+    {% endblock head_javascripts %}
+{% endspaceless %}
+</head>
+{% endblock head %}
+
+{% spaceless %}
+    {% block body %}
+        <body>
+            {% block container %}
+                <div class="container" role="main">
+                    {% block content %}{% endblock content %}
+                </div>
+            {% endblock container %}
+
+            {% block javascripts %}
+                <script src="//code.jquery.com/jquery.js"></script>
+            {% endblock javascripts %}
+        </body>
+    {% endblock body %}
+{% endspaceless %}
+</html>
