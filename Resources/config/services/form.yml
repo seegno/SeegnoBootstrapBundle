@@ -1,5 +1,6 @@
 parameters:
     seegno_bootstrap.form_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\FormType
+    seegno_bootstrap.checkbox_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\CheckboxType
     seegno_bootstrap.choice_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\ChoiceType
     seegno_bootstrap.date_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\DateType
     seegno_bootstrap.integer_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\IntegerType
@@ -14,6 +15,11 @@ services:
         class: %seegno_bootstrap.form_type_extension.class%
         tags:
             - { name: form.type_extension, alias: form }
+
+    seegno_bootstrap.checkbox_type_extension:
+        class: %seegno_bootstrap.checkbox_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: checkbox }
 
     seegno_bootstrap.choice_type_extension:
         class: %seegno_bootstrap.choice_type_extension.class%

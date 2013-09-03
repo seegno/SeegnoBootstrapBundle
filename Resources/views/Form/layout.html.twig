@@ -11,6 +11,38 @@
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
+{#
+    Removed wrapper <div>
+    Added "inline" condition
+    Added wrapper "div > label" to each child, if not "inline"
+#}
+{% block choice_widget_expanded %}
+{% spaceless %}
+    {% if inline %}
+        <div> {# condition to break main label and inputs #}
+    {% endif %}
+
+    {% for child in form %}
+        {% if not inline %}
+           <div class="{{ multiple ? 'checkbox': 'radio' }}"> {# no need of this label if the "inline" option is true #}
+        {% endif %}
+
+            <label{% if inline %} class="{{ multiple ? 'checkbox': 'radio' }}-inline"{% endif %}>
+                {{ form_widget(child) }}
+                {#{ form_label(child) }#}
+                {{ child.vars.label|trans({}, translation_domain) }}
+            </label>
+        {% if not inline %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if inline %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
 {# Added wrapper to year, month and day widgets #}
 {% block date_widget %}
 {% spaceless %}
@@ -101,7 +133,6 @@
 {% spaceless %}
     <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
-        {{ form_errors(form) }}
 
         {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
             <div {{ block('widget_wrapper_attributes') }}>
@@ -113,12 +144,44 @@
                 <span class="help-block">{{ help }}</span>
             {% endif %}
 
+            {{ form_errors(form) }}
+
         {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
             </div>
         {% endif %}
     </div>
 {% endspaceless %}
 {% endblock form_row %}
+
+{# @see "form_row" block comments #}
+{% block checkbox_row %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
+        {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
+            <div {{ block('widget_wrapper_attributes') }}>
+        {% endif %}
+
+            {{ form_errors(form) }}
+
+            <label>
+                {{ form_widget(form) }}
+                {{ label|trans({}, translation_domain)|raw }}
+            </label>
+
+            {% if help is defined %}
+                <span class="help-block">{{ help }}</span>
+            {% endif %}
+
+            {{ form_errors(form) }}
+
+        {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
 
 {# Removed wrapper <div> #}
 {% block button_row %}
@@ -133,3 +196,11 @@
     {% for attrname, attrvalue in widget_wrapper_attr %}{{ attrname }}="{{ attrvalue }}"{% endfor %}
 {% endspaceless %}
 {% endblock widget_wrapper_attributes %}
+
+{#% block label_string %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {{ label|trans({}, translation_domain) }}
+{% endblock label_string %#}

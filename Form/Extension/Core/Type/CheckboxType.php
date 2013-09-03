@@ -3,29 +3,19 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Seegno\BootstrapBundle\Form\AbstractFormControlTypeExtension;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * ChoiceType
+ * ChechboxType
  */
-class ChoiceType extends AbstractFormControlTypeExtension
+class CheckboxType extends AbstractFormControlTypeExtension
 {
     /**
      * {@inheritdoc}
      */
     public function getExtendedType()
     {
-        return 'choice';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['inline'] = $options['inline'];
+        return 'checkbox';
     }
 
     /**
@@ -33,10 +23,8 @@ class ChoiceType extends AbstractFormControlTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        parent::setDefaultOptions($resolver);
-
         $resolver->setDefaults(array(
-            'inline'  => false
+            'widget_wrapper_attr'  => array('class' => 'checkbox')
         ));
     }
 }

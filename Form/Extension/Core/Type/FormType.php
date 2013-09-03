@@ -17,10 +17,12 @@ class FormType extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        // $view->vars['widget_wrapper_attr'] = $options['widget_wrapper_attr'];
-
         if (isset($options['help'])) {
             $view->vars['help'] = $options['help'];
+        }
+
+        if (isset($options['widget_wrapper_attr'])) {
+            $view->vars['widget_wrapper_attr'] = $options['widget_wrapper_attr'];
         }
     }
 
@@ -37,7 +39,11 @@ class FormType extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setOptional(array('help'));
+        $resolver->setOptional(array('help', 'widget_wrapper_attr'));
+
+        $resolver->setAllowedTypes(array(
+            'widget_wrapper_attr' => 'array',
+        ));
 
         // $resolver->setDefaults(array(
         //     'attr'                => array('class' => 'form-control'),
