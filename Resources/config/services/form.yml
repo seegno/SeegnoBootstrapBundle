@@ -1,5 +1,12 @@
 parameters:
     seegno_bootstrap.form_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\FormType
+    seegno_bootstrap.choice_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\ChoiceType
+    seegno_bootstrap.date_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\DateType
+    seegno_bootstrap.integer_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\IntegerType
+    seegno_bootstrap.percent_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\PercentType
+    seegno_bootstrap.money_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\MoneyType
+    seegno_bootstrap.text_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\TextType
+    seegno_bootstrap.time_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\TimeType
     seegno_bootstrap.button_type_extension.class: Seegno\BootstrapBundle\Form\Extension\Core\Type\ButtonType
 
 services:
@@ -7,6 +14,41 @@ services:
         class: %seegno_bootstrap.form_type_extension.class%
         tags:
             - { name: form.type_extension, alias: form }
+
+    seegno_bootstrap.choice_type_extension:
+        class: %seegno_bootstrap.choice_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: choice }
+
+    seegno_bootstrap.date_type_extension:
+        class: %seegno_bootstrap.date_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: date }
+
+    seegno_bootstrap.integer_type_extension:
+        class: %seegno_bootstrap.integer_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: integer }
+
+    seegno_bootstrap.money_type_extension:
+        class: %seegno_bootstrap.money_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: money }
+
+    seegno_bootstrap.percent_type_extension:
+        class: %seegno_bootstrap.percent_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: percent }
+
+    seegno_bootstrap.text_type_extension:
+        class: %seegno_bootstrap.text_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: text }
+
+    seegno_bootstrap.time_type_extension:
+        class: %seegno_bootstrap.time_type_extension.class%
+        tags:
+            - { name: form.type_extension, alias: time }
 
     seegno_bootstrap.button_type_extension:
         class: %seegno_bootstrap.button_type_extension.class%

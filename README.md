@@ -25,7 +25,7 @@ SeegnoBootstrapBundle
 
     $ ln -s ../vendor/twbs/bootstrap bootstrap
 
-## Usage
+## 2. Usage
 
 ### Templates
 

@@ -1,5 +1,6 @@
 {% extends 'form_div_layout.html.twig' %}
 
+{# Removed wrapper <div> #}
 {% block form_widget_compound %}
 {% spaceless %}
     {% if form.parent is empty %}
@@ -10,6 +11,65 @@
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
+{# Added wrapper to year, month and day widgets #}
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  '<div ' ~ year_attr ~ '>' ~ form_widget(form.year) ~ '</div>',
+                '{{ month }}': '<div ' ~ month_attr ~ '>' ~ form_widget(form.month) ~ '</div>',
+                '{{ day }}':   '<div ' ~ day_attr ~ '>' ~ form_widget(form.day) ~ '</div>',
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{# Added wrapper to hour, minute and second widgets #}
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        {% set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} %}
+        <div {{ block('widget_container_attributes') }}>
+            <div {{ hours_attr|raw }}>{{ form_widget(form.hour, vars) }}</div>
+
+            {% if with_minutes|raw %}
+                <div {{ minutes_attr|raw }}>{{ form_widget(form.minute, vars) }}</div>
+            {% endif %}
+
+            {% if with_seconds %}
+                <div {{ seconds_attr|raw }}>{{ form_widget(form.second, vars) }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+{# Added .input-group wrapper #}
+{% block money_widget %}
+{% spaceless %}
+    <div class="input-group">
+        {{ money_pattern|replace({ '{{ widget }}': block('form_widget_simple') })|raw }}
+    </div>
+{% endspaceless %}
+{% endblock money_widget %}
+
+{# Added .input-group wrapper #}
+{% block percent_widget %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <div class="input-group">
+        {{ block('form_widget_simple') }} <span class="input-group-addon">%</span>
+    </div>
+{% endspaceless %}
+{% endblock percent_widget %}
+
+{# Added .sr-only class instead of remove it when label is false #}
 {% block form_label %}
 {% spaceless %}
     {% if not compound %}
@@ -32,29 +92,42 @@
 {% endspaceless %}
 {% endblock form_label %}
 
+{#
+    Added .form-group class and .has-error class if there's errors
+    Added <div> with `widget_wrapper_attributes` if defined
+    Added help if defined
+#}
 {% block form_row %}
 {% spaceless %}
-    <div class="form-group">
+    <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
         {{ form_errors(form) }}
 
-        <div {{ block('widget_wrapper_attributes') }}>
+        {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
+            <div {{ block('widget_wrapper_attributes') }}>
+        {% endif %}
+
             {{ form_widget(form) }}
 
             {% if help is defined %}
-                <p class="help-block">{{ help }}</p>
+                <span class="help-block">{{ help }}</span>
             {% endif %}
-        </div>
+
+        {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
+            </div>
+        {% endif %}
     </div>
 {% endspaceless %}
 {% endblock form_row %}
 
+{# Removed wrapper <div> #}
 {% block button_row %}
 {% spaceless %}
     {{ form_widget(form) }}
 {% endspaceless %}
 {% endblock button_row %}
 
+{# New helper to parse widget wrapper attributes (used on form_row block) #}
 {% block widget_wrapper_attributes %}
 {% spaceless %}
     {% for attrname, attrvalue in widget_wrapper_attr %}{{ attrname }}="{{ attrvalue }}"{% endfor %}
