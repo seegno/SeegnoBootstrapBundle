@@ -35,3 +35,36 @@ If you want to extend one of the *SeegnoBootstrapBundle* templates, you'll need 
     assetic:
         bundles:
             - SeegnoBootstrapBundle
+
+### Forms
+
+To use the *SeegnoBootstrapBundle* form theme just import it *in place*:
+
+    {# some_view.html.twig #}
+    {% form_theme form 'SeegnoBootstrapBundle:Form:layout.html.twig' %}
+
+Or, add it globally to *Twig Configuration*:
+
+    # app/config.yml
+    twig:
+        form:
+            resources: ['SeegnoBootstrapBundle:Form:layout.html.twig']
+
+## 3. Examples
+
+The bundle includes some examples. Check the code on `Controller/ExampleController.php` and relative *views*.
+
+If you want to see them on your browser, just add the following route to your routing file:
+
+    # app/routing_dev.yml
+    seegno_bootstrap_bundle:
+        resource: "@SeegnoBootstrapBundle/Controller/"
+        type:     annotation
+        prefix:   /
+
+---
+
+## TODO
+
+* Review CollectionType and ButtonType
+* Better handling of "horizontal" and "inline" forms

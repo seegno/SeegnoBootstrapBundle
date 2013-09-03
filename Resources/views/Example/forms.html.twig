@@ -1,0 +1,63 @@
+{% extends 'SeegnoBootstrapBundle:Template:base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .form-inline > .form-group { margin-right: 10px; }
+    </style>
+{% endblock %}
+
+{% block title %}SeegnoBootstrapBundle - Forms{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Forms</h1>
+    </div>
+
+    <h2>Basic example</h2>
+    <p>We don't force the usage of <code>.form-control</code> class. If you use the <code>attr</code> option on any <em>type</em> don't forget to also add the <code>.form-control</code> class.</p>
+
+    <form role="form">
+        {{ form(basicForm) }}
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <hr>
+
+    <h2>Inline form</h2>
+    <p>When using <code>.form-inline</code>, you'll need to tweak the style a little to add space between <em>groups</em>, i.e.: <code>.form-inline > .form-group { margin-right: 10px; }</code></p>
+
+    <form class="form-inline" role="form">
+        {{ form_widget(inlineForm) }}
+
+        <button type="submit" class="btn btn-default">Sign in</button>
+    </form>
+
+    <hr>
+
+    <h2>Horizontal form</h2>
+    <p>For an <code>.horizontal-form</code> you'll need to play with <code>label_attr</code> and <code>widget_wrapper_attr</code> options.</p>
+
+    <form class="form-horizontal" role="form">
+        {{ form_widget(horizontalForm) }}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2>Full example</h2>
+    <p>A complete example of all <em>types</em>.</p>
+
+    <form role="form">
+        {{ form_widget(fullForm) }}
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

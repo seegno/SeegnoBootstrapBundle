@@ -36,6 +36,14 @@ class FormType extends AbstractTypeExtension
 
     /**
      * {@inheritdoc}
+     *
+     * For a "horizontal" form, we can use, for example, the following options:
+     *
+     *     array(
+     *         'label_attr'          => 'control-label col-lg-2',
+     *         'widget_wrapper_attr' => 'col-lg-10',
+     *         // ...
+     *     );
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -44,11 +52,5 @@ class FormType extends AbstractTypeExtension
         $resolver->setAllowedTypes(array(
             'widget_wrapper_attr' => 'array',
         ));
-
-        // $resolver->setDefaults(array(
-        //     'attr'                => array('class' => 'form-control'),
-        //     'widget_wrapper_attr' => array() // col-lg-10
-        //     // 'label_attr' => array('class' => 'control-label col-lg-2')
-        // ));
     }
 }
