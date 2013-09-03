@@ -1,0 +1,20 @@
+{% extends 'SeegnoBootstrapBundle:Template:base.html.twig' %}
+
+{% block title %}SeegnoBootstrapBundle - Alerts{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Alerts</h1>
+    </div>
+
+    <h2>Examples</h2>
+    <p>Rendering all flashes from <code>Flashbag</code>.</p>
+    {{ seegno_bootstrap_alerts() }}
+
+    <hr>
+
+    <h2>Custom alert</h2>
+    <p>You can use <code>seegno_bootstrap_alert</code> twig function to render an alert.</p>
+
+    {{ seegno_bootstrap_alert('success', 'This is a custom alert without the dismissable option disabled.', false) }}
+{% endblock %}

@@ -54,6 +54,25 @@
 
             {% block javascripts %}
                 <script src="//code.jquery.com/jquery.js"></script>
+
+                {% javascripts
+                    'bootstrap/js/transition.js'
+                    'bootstrap/js/alert.js'
+                    'bootstrap/js/button.js'
+                    'bootstrap/js/carousel.js'
+                    'bootstrap/js/collapse.js'
+                    'bootstrap/js/dropdown.js'
+                    'bootstrap/js/modal.js'
+                    'bootstrap/js/tooltip.js'
+                    'bootstrap/js/popover.js'
+                    'bootstrap/js/scrollspy.js'
+                    'bootstrap/js/dropdown.js'
+                    'bootstrap/js/tab.js'
+                    'bootstrap/js/affix.js'
+                %}
+
+                    <script type="text/javascript" src="{{ asset_url }}"></script>
+                {% endjavascripts %}
             {% endblock javascripts %}
         </body>
     {% endblock body %}

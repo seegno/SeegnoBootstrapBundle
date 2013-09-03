@@ -1,0 +1,9 @@
+parameters:
+    seegno_bootstrap.twig_extension.class: Seegno\BootstrapBundle\Twig\Extension\SeegnoBootstrapExtension
+
+services:
+    seegno_bootstrap.twig_extension:
+        class: %seegno_bootstrap.twig_extension.class%
+        arguments: [@session]
+        tags:
+            - { name: twig.extension }

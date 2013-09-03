@@ -1,0 +1,15 @@
+{% spaceless %}
+{% for alert in alerts %}
+    <div class="{{ alert.class }}">
+        {% if dismissable %}
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {% endif %}
+
+        {% for message in alert.messages %}
+            {{ message|raw }}
+
+            {% if not loop.last %}<br>{% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}
+{% endspaceless %}

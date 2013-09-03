@@ -50,6 +50,20 @@ Or, add it globally to *Twig Configuration*:
         form:
             resources: ['SeegnoBootstrapBundle:Form:layout.html.twig']
 
+### Alerts
+
+There are two *twig functions* to help you handle the flash messages.
+
+To render all the `FlashBag` you can include the following *twig function* anywhere on your *view*:
+
+	{# some_view.html.twig #}
+	{{ seegno_bootstrap_alerts() }}
+
+If you need to render an *alert* individually, use:
+
+	{# some_view.html.twig #}
+	{{ seegno_bootstrap_alert('success', 'Your message here.') }}
+
 ## 3. Examples
 
 The bundle includes some examples. Check the code on `Controller/ExampleController.php` and relative *views*.

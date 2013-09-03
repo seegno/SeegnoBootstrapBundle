@@ -23,6 +23,20 @@ class ExampleController extends Controller
     }
 
     /**
+     * @Route("/seegno/bootstrap/alerts")
+     * @Template()
+     */
+    public function alertsAction()
+    {
+        $this->get('session')->getFlashBag()->add('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+        $this->get('session')->getFlashBag()->add('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+        $this->get('session')->getFlashBag()->add('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+        $this->get('session')->getFlashBag()->add('danger', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+
+        return array();
+    }
+
+    /**
      * Create a basic form
      *
      * @return FormBuilder
