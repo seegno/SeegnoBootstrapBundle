@@ -9,7 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ExampleController extends Controller
 {
     /**
-     * @Route("/seegno/bootstrap/forms")
+     * @Route("/seegno/bootstrap/alerts", name="seegno_bootstrap_alerts")
+     * @Template()
+     */
+    public function alertsAction()
+    {
+        $this->get('session')->getFlashBag()->add('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+        $this->get('session')->getFlashBag()->add('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+        $this->get('session')->getFlashBag()->add('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+        $this->get('session')->getFlashBag()->add('danger', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+
+        return array();
+    }
+
+    /**
+     * @Route("/seegno/bootstrap/forms", name="seegno_bootstrap_forms")
      * @Template()
      */
     public function formsAction()
@@ -23,17 +37,17 @@ class ExampleController extends Controller
     }
 
     /**
-     * @Route("/seegno/bootstrap/alerts")
+     * @Route("/seegno/bootstrap/pagination", name="seegno_bootstrap_pagination")
      * @Template()
      */
-    public function alertsAction()
+    public function paginationAction()
     {
-        $this->get('session')->getFlashBag()->add('success', '<strong>Well done!</strong> You successfully read this important alert message.');
-        $this->get('session')->getFlashBag()->add('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-        $this->get('session')->getFlashBag()->add('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-        $this->get('session')->getFlashBag()->add('danger', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(range(1, 10), $this->get('request')->query->get('page', 1), 1);
 
-        return array();
+        return array(
+            'pagination' => $pagination
+        );
     }
 
     /**

@@ -1,0 +1,55 @@
+{% extends 'SeegnoBootstrapBundle:Template:base.html.twig' %}
+
+{% set route = app.request.get('_route') %}
+
+{% block title %}SeegnoBootstrapBundle{% endblock %}
+
+{% block container %}
+    <br>
+
+    <div class="container">
+        <header class="jumbotron" role="banner">
+            <h1>SeegnoBootstrapBundle</h1>
+
+            <p><a href="http://getbootstrap.com" target="_blank">Bootstrap</a> utilities to Symfony2.</p>
+        </header>
+    </div>
+
+    <div class="container" role="main">
+        <div class="row">
+            <aside class="col-md-3">
+                <div class="well">
+                    <h6>NAVIGATION</h6>
+                    <hr>
+
+                    <nav role="navigation">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li{% if route is sameas('seegno_bootstrap_alerts') %} class="active"{% endif %}>
+                                <a href="{{ path('seegno_bootstrap_alerts') }}">Alerts</a>
+                            </li>
+                            <li{% if route is sameas('seegno_bootstrap_forms') %} class="active"{% endif %}>
+                                <a href="{{ path('seegno_bootstrap_forms') }}">Forms</a>
+                            </li>
+                            <li{% if route is sameas('seegno_bootstrap_pagination') %} class="active"{% endif %}>
+                                <a href="{{ path('seegno_bootstrap_pagination') }}">Pagination</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <article class="col-md-9" role="article">
+                {% block content %}{% endblock %}
+            </article>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <footer class="text-center" role="contentinfo">
+        &copy; {{ "now"|date('Y') }}</span>&nbsp;<a href="http://seegno.com" target="_blank">Seegno</a>
+    </footer>
+
+    <br>
+{% endblock %}

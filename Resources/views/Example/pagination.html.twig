@@ -1,0 +1,25 @@
+{% extends 'SeegnoBootstrapBundle:Example:base.html.twig' %}
+
+{% block title %}{{ parent() }} - Pagination{% endblock %}
+
+{% block content %}
+    <header class="page-header">
+        <h1>Pagination</h1>
+    </header>
+
+    <section role="region">
+        <h2>Default pagination</h2>
+        <p>Simple pagination example.</p>
+
+        {{ knp_pagination_render(pagination, 'SeegnoBootstrapBundle:Pagination:layout.html.twig') }}
+    </section>
+
+    <hr>
+
+    <section role="region">
+        <h2>Pager</h2>
+        <p>Just the <em>Previous</em> and <em>Next</em> links.</p>
+
+        {{ knp_pagination_render(pagination, 'SeegnoBootstrapBundle:Pagination:pager.html.twig') }}
+    </section>
+{% endblock %}

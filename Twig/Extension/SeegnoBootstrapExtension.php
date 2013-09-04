@@ -14,15 +14,22 @@ class SeegnoBootstrapExtension extends \Twig_Extension
      */
     protected $session;
 
+    /**
+     * @var array
+     */
+    protected $alertsTypes;
+
 
     /**
      * Constructor
      *
      * @param SessionInterface $session
+     * @param array            $alertsTypes
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, array $alertsTypes)
     {
         $this->session = $session;
+        $this->alertsTypes = $alertsTypes;
     }
 
     /**
@@ -48,14 +55,27 @@ class SeegnoBootstrapExtension extends \Twig_Extension
      * Render all flashes on the flashbag
      *
      * @param  boolean $dismissable  The default value is true.
+     * @param  boolean $strict       If false, renders all the flashes on the FlashBag.
+     *
      * @return string  The HTML
      */
-    public function renderHtmlAlerts($dismissable = true)
+    public function renderHtmlAlerts($dismissable = true, $strict = true)
     {
         $flashbag = $this->session->getFlashbag();
+        $flashes = array();
 
-        if (count($flashbag)) {
-            return $this->renderAlerts($flashbag->all(), $dismissable);
+        if (false === $strict) {
+            $flashes = $flashbag->all();
+        } else {
+            foreach ($flashbag->keys() as $key) {
+                if (in_array($key, $this->alertsTypes)) {
+                    $flashes[$key] = $flashbag->get($key);
+                }
+            }
+        }
+
+        if (count($flashes)) {
+            return $this->renderAlerts($flashes, $dismissable);
         }
     }
 
@@ -65,11 +85,16 @@ class SeegnoBootstrapExtension extends \Twig_Extension
      * @param  string       $type
      * @param  array|string $messages
      * @param  boolean      $dismissable The default value is true.
+     *
      * @return string       The HTML
      */
-    public function renderHtmlAlert($type, $messages, $dismissable = true)
+    public function renderHtmlAlert($type, $messages = false, $dismissable = true)
     {
-        $messages = is_array($messages) ? $messages : array($messages);
+        if (false === $messages) {
+            $messages = $this->session->getFlashbag()->get($type);
+        } else {
+            $messages = (is_array($messages) ? $messages : array($messages));
+        }
 
         return $this->renderAlerts(array($type => $messages), $dismissable);
     }
@@ -87,6 +112,7 @@ class SeegnoBootstrapExtension extends \Twig_Extension
      *
      * @param  array   $flashes
      * @param  boolean $dismissable The default value is true.
+     *
      * @return string  The HTML
      */
     private function renderAlerts($flashes, $dismissable = true)

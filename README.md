@@ -52,17 +52,54 @@ Or, add it globally to *Twig Configuration*:
 
 ### Alerts
 
-There are two *twig functions* to help you handle the flash messages.
+There are two *twig functions* to help you handle the flash messages:
 
-To render all the `FlashBag` you can include the following *twig function* anywhere on your *view*:
+###### All at once
+
+Render all the `FlashBag` you can include the following *twig function* anywhere on your *view*:
 
 	{# some_view.html.twig #}
 	{{ seegno_bootstrap_alerts() }}
 
-If you need to render an *alert* individually, use:
+By default will render the *keys* "success", "info", "warning" and "danger" flashes. You can change this on the *SeegnoBoostrap Configuration*:
+
+    # app/config.yml
+    seegno_bootstrap:
+        alerts: ["success", "info", "warning", "danger"]
+
+Or, if you want to catch any *flash*, turn the *strict* option off:
+
+    {# some_view.html.twig #}
+    {{ seegno_bootstrap_alerts(false) }}
+
+###### Just what you want
+
+Render a *flash* individually (this will lookup for the given key on the *FlashBag*):
+
+    {# some_view.html.twig #}
+    {{ seegno_bootstrap_alert('success') }}
+
+You can also use this *twig function* adding a message (without adding it to the *FlashBag*):
 
 	{# some_view.html.twig #}
-	{{ seegno_bootstrap_alert('success', 'Your message here.') }}
+	{{ seegno_bootstrap_alert('success', 'Your message here') }}
+
+### Pagination
+
+Pagination takes advantages of [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and we suggest you to use it.
+
+We've included two different views: a *default pagination* and a *pager*.
+
+Added it to *KnpPaginatior Configuration*:
+
+    # app/config.yml
+    knp_paginator:
+        template:
+            pagination: SeegnoBootstrapBundle:Pagination:layout.html.twig
+
+Or, just use it with the *twig function*:
+
+    {{ knp_pagination_render(pagination, 'SeegnoBootstrapBundle:Pagination:pager.html.twig') }}
 
 ## 3. Examples
 
@@ -74,7 +111,6 @@ If you want to see them on your browser, just add the following route to your ro
     seegno_bootstrap_bundle:
         resource: "@SeegnoBootstrapBundle/Controller/"
         type:     annotation
-        prefix:   /
 
 ---
 

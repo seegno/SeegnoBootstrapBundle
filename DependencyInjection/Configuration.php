@@ -18,6 +18,16 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('seegno_bootstrap');
 
+        $rootNode
+            ->children()
+                ->arrayNode('alerts')
+                    ->prototype('scalar')->end()
+                        ->defaultValue(array('success', 'info', 'warning', 'danger'))
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }

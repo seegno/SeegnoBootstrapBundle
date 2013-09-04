@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "Bootstrap utilities for Symfony2",
-    "keywords": ["symfony2", "bootstrap", "css"],
+    "keywords": ["symfony2", "bootstrap", "css", "templates", "forms", "alerts", "flashes", "pagination"],
     "authors": [
         {
             "name": "Rui Marinho",
@@ -21,8 +21,19 @@
     "require": {
         "twbs/bootstrap": "v3.0.0"
     },
+    "require-dev": {
+        "knplabs/knp-paginator-bundle": "dev-master"
+    },
+    "suggest":  {
+        "knplabs/knp-paginator-bundle": "dev-master"
+    },
     "autoload": {
         "psr-0": { "Seegno\\BootstrapBundle": "" }
     },
-    "target-dir": "Seegno/BootstrapBundle"
+    "target-dir": "Seegno/BootstrapBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "v3.0.0"
+        }
+    }
 }
