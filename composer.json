@@ -33,7 +33,7 @@
     "target-dir": "Seegno/BootstrapBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "v3.0.0"
+            "dev-master": "v3.0.0-dev"
         }
     }
 }
