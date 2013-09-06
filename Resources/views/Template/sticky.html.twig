@@ -1,0 +1,99 @@
+{% block doctype %}
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="{{ app.request.locale }}"> <!--<![endif]-->
+{% endblock doctype %}
+{% block head %}
+<head>
+    <meta charset="utf-8">
+
+    {% block head_start %}{% endblock head_start %}
+
+    <title>{% block title %}Welcome!{% endblock title %}</title>
+
+{% spaceless %}
+    {% block metadata %}
+        <meta name="viewport" content="{% block viewport %}width=device-width, initial-scale=1.0{% endblock viewport %}">
+        <meta name="description" content="{% block description %}{% endblock description %}">
+        <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
+        <meta name="author" content="{% block author %}{% endblock author %}">
+    {% endblock metadata %}
+
+    {% block favicon %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% endblock favicon %}
+
+    {% block stylesheets %}
+        {% stylesheets
+            'bootstrap/less/bootstrap.less'
+            'bundles/seegnobootstrap/less/sticky.less'
+        %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock stylesheets %}
+
+    {% block head_javascripts %}
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="{{ asset('bootstrap/assets/js/html5shiv.js') }}"></script>
+            <script src="{{ asset('bootstrap/assets/js/respond.min.js') }}"></script>
+        <![endif]-->
+    {% endblock head_javascripts %}
+{% endspaceless %}
+
+    {% block head_end %}{% endblock head_end %}
+</head>
+{% endblock head %}
+
+{% spaceless %}
+    {% block body %}
+        <body{{ block('body_attributes') }}>
+            {% block body_start %}{% endblock body_start %}
+
+            <div class="sticky-wrapper">
+                {% block header %}{% endblock header %}
+
+                {% block container %}
+                    <div class="container" role="main">
+                        {% block content %}{% endblock content %}
+                    </div>
+                {% endblock container %}
+
+                <div class="sticky-push"></div>
+            </div>
+
+            <div class="sticky-footer">
+                {% block footer %}{% endblock footer %}
+            </div>
+
+            {% block javascripts %}
+                <script src="//code.jquery.com/jquery.js"></script>
+
+                {% javascripts
+                    'bootstrap/js/transition.js'
+                    'bootstrap/js/alert.js'
+                    'bootstrap/js/button.js'
+                    'bootstrap/js/carousel.js'
+                    'bootstrap/js/collapse.js'
+                    'bootstrap/js/dropdown.js'
+                    'bootstrap/js/modal.js'
+                    'bootstrap/js/tooltip.js'
+                    'bootstrap/js/popover.js'
+                    'bootstrap/js/scrollspy.js'
+                    'bootstrap/js/dropdown.js'
+                    'bootstrap/js/tab.js'
+                    'bootstrap/js/affix.js'
+                %}
+
+                    <script type="text/javascript" src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endblock javascripts %}
+
+            {% block body_end %}{% endblock body_end %}
+        </body>
+    {% endblock body %}
+{% endspaceless %}
+</html>

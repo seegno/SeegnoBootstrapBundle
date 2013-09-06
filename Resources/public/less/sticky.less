@@ -1,0 +1,29 @@
+/**
+ * Attach a footer to the bottom of the viewport
+ * when the content is shorter than it.
+ */
+
+@sticky-footer-height: 50px;
+
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+// Wrapper for all page content to push down footer
+.sticky-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+
+    /* Negative indent footer by it's height */
+    margin: 0 auto -@sticky-footer-height;
+}
+
+// Set the fixed height of the footer here
+.sticky-push,
+.sticky-footer {
+    height: @sticky-footer-height;
+}

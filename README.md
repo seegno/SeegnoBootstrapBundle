@@ -21,9 +21,10 @@ SeegnoBootstrapBundle
         );
     }
 
-1.3. (Optional) Symlink `twbs/bootstrap`. From your `web` folder:
+1.3. (Optional) Symlink `twbs/bootstrap` and `twbs/boostrap/fonts`. From your `web` folder:
 
     $ ln -s ../vendor/twbs/bootstrap bootstrap
+    $ ln -s ../vendor/twbs/bootstrap/fonts fonts
 
 ## 2. Usage
 

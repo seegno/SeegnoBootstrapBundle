@@ -3,11 +3,13 @@
 {# Removed wrapper <div> #}
 {% block form_widget_compound %}
 {% spaceless %}
-    {% if form.parent is empty %}
-        {{ form_errors(form) }}
-    {% endif %}
-    {{ block('form_rows') }}
-    {{ form_rest(form) }}
+    <div {{ block('widget_container_attributes') }}>
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </div>
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
