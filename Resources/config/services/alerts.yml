@@ -1,0 +1,9 @@
+parameters:
+    seegno_bootstrap.alerts.twig_extension.class: Seegno\BootstrapBundle\Twig\Extension\SeegnoBootstrapAlertsExtension
+
+services:
+    seegno_bootstrap.alerts.twig_extension:
+        class: %seegno_bootstrap.alerts.twig_extension.class%
+        arguments: [@session, %seegno_boostrap.alerts%]
+        tags:
+            - { name: twig.extension }

@@ -23,17 +23,7 @@
                     <hr>
 
                     <nav role="navigation">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li{% if route is sameas('seegno_bootstrap_alerts') %} class="active"{% endif %}>
-                                <a href="{{ path('seegno_bootstrap_alerts') }}">Alerts</a>
-                            </li>
-                            <li{% if route is sameas('seegno_bootstrap_forms') %} class="active"{% endif %}>
-                                <a href="{{ path('seegno_bootstrap_forms') }}">Forms</a>
-                            </li>
-                            <li{% if route is sameas('seegno_bootstrap_pagination') %} class="active"{% endif %}>
-                                <a href="{{ path('seegno_bootstrap_pagination') }}">Pagination</a>
-                            </li>
-                        </ul>
+                        {{ knp_menu_render('seegno_bootstrap_example') }}
                     </nav>
                 </div>
             </aside>

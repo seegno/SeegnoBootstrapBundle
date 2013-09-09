@@ -20,26 +20,23 @@ class SeegnoBootstrapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $this->registerAlertsConfiguration($config['alerts'], $container);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
 
-        $loader->load('form.yml');
-        $loader->load('twig.yml');
-    }
+        if ($config['forms']) {
+            $loader->load('forms.yml');
+        }
 
-    /**
-     * Register alerts configuration as container parameter
-     *
-     * @param  array            $config
-     * @param  ContainerBuilder $container
-     *
-     * @return SeegnoBootstrapExtension
-     */
-    public function registerAlertsConfiguration(array $config, ContainerBuilder $container)
-    {
-        $container->setParameter('seegno_boostrap.alerts', $config);
+        if ($config['alerts']) {
+            $container->setParameter('seegno_boostrap.alerts', $config['alerts']);
 
-        return $this;
+            $loader->load('alerts.yml');
+        }
+
+        if (isset($config['navs'])) {
+            $container->setParameter('knp_menu.renderer.twig.options', $config['navs']['options']);
+            $container->setParameter('seegno_bootstrap.navs.menus', $config['navs']['menus']);
+
+            $loader->load('navs.yml');
+        }
     }
 }

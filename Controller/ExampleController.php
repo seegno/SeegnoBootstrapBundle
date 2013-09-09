@@ -37,6 +37,15 @@ class ExampleController extends Controller
     }
 
     /**
+     * @Route("/seegno/bootstrap/navs", name="seegno_bootstrap_navs")
+     * @Template()
+     */
+    public function navsAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/seegno/bootstrap/pagination", name="seegno_bootstrap_pagination")
      * @Template()
      */

@@ -85,9 +85,31 @@ You can also use this *twig function* adding a message (without adding it to the
 	{# some_view.html.twig #}
 	{{ seegno_bootstrap_alert('success', 'Your message here') }}
 
+### Navs
+
+Navigation takes advantage of [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle).
+
+To make the menus easier to define we've included a custom `MenuProvider` to define the menus using `yaml`.
+
+You can define a menu as showed bellow:
+
+    seegno_bootstrap:
+        navs:
+            menus:
+                main:
+                    childrenAttributes: { class: 'nav nav-pills' }
+                    items:
+                        homepage: { label: 'Pages', route: 'homepage' }
+                        about:    { label: 'About', route: 'about' }
+                        blog:     { label: 'Blog', route: 'blog', extras: { 'routes': [{ pattern: '/^blog/' }] } }
+
+And, call the menu using the [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle) *twig function*:
+
+    {{ knp_menu_render('main') }}
+
 ### Pagination
 
-Pagination takes advantages of [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and we suggest you to use it.
+Pagination takes advantage of [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and we suggest you to use it in case you need to paginate something.
 
 We've included two different views: a *default pagination* and a *pager*.
 
@@ -102,20 +124,33 @@ Or, just use it with the *twig function*:
 
     {{ knp_pagination_render(pagination, 'SeegnoBootstrapBundle:Pagination:pager.html.twig') }}
 
+Check the examples section for more.
+
 ## 3. Examples
 
 The bundle includes some examples. Check the code on `Controller/ExampleController.php` and relative *views*.
 
-If you want to see them on your browser, just add the following route to your routing file:
+If you want to see them on your browser, add the following route to your routing file:
 
     # app/routing_dev.yml
     seegno_bootstrap_bundle:
         resource: "@SeegnoBootstrapBundle/Controller/"
         type:     annotation
 
+And, the `seegno_bootstrap` menu:
+
+    # app/config_dev.yml
+    seegno_bootstrap:
+        seegno_bootstrap_example:
+            childrenAttributes: { class: 'nav nav-pills nav-stacked'}
+            items:
+                alerts:     { label: 'Alerts', route: 'seegno_bootstrap_alerts' }
+                forms:      { label: 'Forms', route: 'seegno_bootstrap_forms' }
+                navs:       { label: 'Navs', route: 'seegno_bootstrap_navs' }
+                pagination: { label: 'Pagination', route: 'seegno_bootstrap_pagination' }
+
 ---
 
-## TODO
+## 4. Advanced
 
-* Review CollectionType and ButtonType
-* Better handling of "horizontal" and "inline" forms
+To do.

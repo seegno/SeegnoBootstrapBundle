@@ -1,0 +1,9 @@
+parameters:
+    seegno_bootstrap.navs.menu_provider.class: Seegno\BootstrapBundle\Navs\MenuProvider
+
+services:
+    seegno_bootstrap.navs.menu_provider:
+        class: %seegno_bootstrap.navs.menu_provider.class%
+        arguments: [@knp_menu.factory, %seegno_bootstrap.navs.menus%]
+        tags:
+            - { name: knp_menu.provider }

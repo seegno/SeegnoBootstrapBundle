@@ -5,9 +5,9 @@ namespace Seegno\BootstrapBundle\Twig\Extension;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * SeegnoBootstrapExtension
+ * SeegnoBootstrapAlertsExtension
  */
-class SeegnoBootstrapExtension extends \Twig_Extension
+class SeegnoBootstrapAlertsExtension extends \Twig_Extension
 {
     /**
      * @var SessionInterface
