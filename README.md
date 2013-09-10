@@ -111,6 +111,11 @@ Furthermore, to make the menus easier to define we've included a custom `MenuPro
                         about:    { label: 'About', route: 'about' }
                         blog:     { label: 'Blog', route: 'blog', extras: { 'routes': [{ pattern: '/^blog/' }] } }
 
+The `MenuProvider` provides some menu item extras:
+
+ * **submenu**: The key of another menu to render it as menu item children.
+ * **roles**: An array of roles setted as an extra parameter that check if the users has access to certain menu item.
+
 ### Pagination
 
 Pagination takes advantage of [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and we suggest you to use it in case you need to paginate something.

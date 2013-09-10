@@ -4,6 +4,6 @@ parameters:
 services:
     seegno_bootstrap.navs.menu_provider:
         class: %seegno_bootstrap.navs.menu_provider.class%
-        arguments: [@knp_menu.factory, %seegno_bootstrap.navs.menus%]
+        arguments: [@knp_menu.factory, @security.context, %seegno_bootstrap.navs.menus%]
         tags:
             - { name: knp_menu.provider }

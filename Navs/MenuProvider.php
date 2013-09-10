@@ -4,6 +4,7 @@ namespace Seegno\BootstrapBundle\Navs;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\Provider\MenuProviderInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * MenuProvider
@@ -16,19 +17,26 @@ class MenuProvider implements MenuProviderInterface
     protected $factory = null;
 
     /**
+     * @var SecurityContextInterface
+     */
+    protected $securityContext;
+
+    /**
      * @var array
      */
     protected $menus = array();
 
 
     /**
-     * @param FactoryInterface $factory
-     * @param array            $menus
+     * @param FactoryInterface         $factory
+     * @param SecurityContextInterface $securityContext
+     * @param array                    $menus
      */
-    public function __construct(FactoryInterface $factory, $menus)
+    public function __construct(FactoryInterface $factory, SecurityContextInterface $securityContext, $menus)
     {
         $this->factory = $factory;
         $this->menus = $menus;
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -53,8 +61,18 @@ class MenuProvider implements MenuProviderInterface
 
         $menu = $this->factory->createItem($name, $options);
 
+        // add children
         foreach ($items as $key => $itemOptions) {
             $submenu = isset($itemOptions['submenu']) ? $itemOptions['submenu'] : false;
+
+            // handle roles
+            if (isset($itemOptions['extras']['roles'])) {
+                $roles = is_array($itemOptions['extras']['roles']) ? $itemOptions['extras']['roles'] : array($itemOptions['extras']['roles']);
+
+                if (! $this->securityContext->isGranted($roles)) {
+                    $itemOptions['display'] = false;
+                }
+            }
 
             $menuItem = $menu->addChild($key, $itemOptions);
 
