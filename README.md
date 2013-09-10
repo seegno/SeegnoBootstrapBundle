@@ -87,12 +87,20 @@ You can also use this *twig function* adding a message (without adding it to the
 
 ### Navs
 
-Navigation takes advantage of [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle).
+Navigation takes advantage of [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle). Use the *navigation layout* included:
 
-To make the menus easier to define we've included a custom `MenuProvider` to define the menus using `yaml`.
+    # app/config.yml
+    knp_menu:
+        twig:
+            template: SeegnoBootstrapBundle:Nav:layout.html.twig
 
-You can define a menu as showed bellow:
+Or, use it on the *twig function*:
 
+    {{ knp_menu_render('main', { 'template': 'SeegnoBootstrapBundle:Nav:layout.html.twig' }) }}
+
+Furthermore, to make the menus easier to define we've included a custom `MenuProvider` to define the menus using `yaml`. You can define a menu as showed bellow:
+
+    # app/config.yml
     seegno_bootstrap:
         navs:
             menus:
@@ -102,10 +110,6 @@ You can define a menu as showed bellow:
                         homepage: { label: 'Pages', route: 'homepage' }
                         about:    { label: 'About', route: 'about' }
                         blog:     { label: 'Blog', route: 'blog', extras: { 'routes': [{ pattern: '/^blog/' }] } }
-
-And, call the menu using the [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle) *twig function*:
-
-    {{ knp_menu_render('main') }}
 
 ### Pagination
 

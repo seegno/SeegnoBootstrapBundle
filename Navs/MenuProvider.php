@@ -48,7 +48,6 @@ class MenuProvider implements MenuProviderInterface
 
         $menuOptions = $this->menus[$name];
         $items = $menuOptions['items'];
-        // unset($menuOptions['items']);
 
         $options = array_merge($menuOptions, $options);
 
@@ -56,25 +55,14 @@ class MenuProvider implements MenuProviderInterface
 
         foreach ($items as $key => $itemOptions) {
             $submenu = isset($itemOptions['submenu']) ? $itemOptions['submenu'] : false;
-            // unset($itemOptions['submenu']);
 
             $menuItem = $menu->addChild($key, $itemOptions);
 
             // handle submenu
             if ($submenu) {
-                // Add caret
-                $menuItem->setLabel($menuItem->getLabel() . ' <span class="caret"></span>');
-
-                // Add attributes
-                $menuItem->setAttribute('class', $menuItem->getAttribute('class', '') . ' dropdown');
-                $menuItem->setLinkAttribute('class', trim($menuItem->getLinkAttribute('class', '') . ' dropdown-toggle'));
-                $menuItem->setLinkAttribute('data-toggle', trim($menuItem->getLinkAttribute('data-toggle', '') . ' dropdown'));
-
-                // Create and set the submenu children
                 $submenu = $this->get($submenu);
 
                 $menuItem->setChildren($submenu->getChildren());
-                $menuItem->setChildrenAttribute('class', 'dropdown-menu');
             }
         }
 
