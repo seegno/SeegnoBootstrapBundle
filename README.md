@@ -116,6 +116,10 @@ The `MenuProvider` provides some menu item extras:
  * **submenu**: The key of another menu to render it as menu item children.
  * **roles**: An array of roles setted as an extra parameter that check if the users has access to certain menu item.
 
+The `twig template` included also have some extras:
+
+ * **include**: The template location setted as an extra parameter, i.e., `SeegnoBootstrapBundle:Example:menuitem.html.twig`
+
 ### Pagination
 
 Pagination takes advantage of [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) and we suggest you to use it in case you need to paginate something.
@@ -157,6 +161,7 @@ And, the `seegno_bootstrap` menu:
                 forms:      { label: 'Forms', route: 'seegno_bootstrap_forms' }
                 navs:       { label: 'Navs', route: 'seegno_bootstrap_navs' }
                 pagination: { label: 'Pagination', route: 'seegno_bootstrap_pagination' }
+                something:  { extras: { include: 'SeegnoBootstrapBundle:Example:menuitem.html.twig' } }
 
 ---
 

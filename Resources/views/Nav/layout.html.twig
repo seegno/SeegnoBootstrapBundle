@@ -32,7 +32,9 @@
 {# displaying the item #}
     {% import 'knp_menu.html.twig' as knp_menu %}
     <li{{ knp_menu.attributes(attributes) }}>
-        {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
+        {%- if item.extra('include') %}
+        {% include item.extra('include') %}
+        {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
         {{ block('linkElement') }}
         {%- else %}
         {{ block('spanElement') }}

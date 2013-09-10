@@ -46,7 +46,6 @@ class Configuration implements ConfigurationInterface
                                 ->children()
                                     ->arrayNode('childrenAttributes')
                                         ->prototype('scalar')->end()
-                                        // ->defaultValue(array('class' => 'nav'))
                                     ->end()
                                     ->arrayNode('attributes')
                                         ->prototype('scalar')->end()
