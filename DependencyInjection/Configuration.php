@@ -45,9 +45,11 @@ class Configuration implements ConfigurationInterface
                             ->prototype('array')
                                 ->children()
                                     ->arrayNode('childrenAttributes')
+                                        ->beforeNormalization()->always(function($v) { return $this->fixKeys($v); })->end()
                                         ->prototype('scalar')->end()
                                     ->end()
                                     ->arrayNode('attributes')
+                                        ->beforeNormalization()->always(function($v) { return $this->fixKeys($v); })->end()
                                         ->prototype('scalar')->end()
                                     ->end()
                                     ->arrayNode('items')
@@ -61,9 +63,11 @@ class Configuration implements ConfigurationInterface
                                                     ->prototype('scalar')->end()
                                                 ->end()
                                                 ->arrayNode('attributes')
+                                                    ->beforeNormalization()->always(function($v) { return $this->fixKeys($v); })->end()
                                                     ->prototype('scalar')->end()
                                                 ->end()
                                                 ->arrayNode('linkAttributes')
+                                                    ->beforeNormalization()->always(function($v) { return $this->fixKeys($v); })->end()
                                                     ->prototype('scalar')->end()
                                                 ->end()
                                                 ->arrayNode('extras')
@@ -83,5 +87,23 @@ class Configuration implements ConfigurationInterface
         ;
 
         return $treeBuilder;
+    }
+
+    /**
+     * Convert underscores to dashes
+     *
+     * @param  string $v
+     * @return string
+     */
+    private function fixKeys($v)
+    {
+        foreach ($v as $key => $value) {
+            if (false !== stripos($key, '_')) {
+                $v[str_replace('_', '-', $key)] = $v[$key];
+                unset($v[$key]);
+            }
+        };
+
+        return $v;
     }
 }
