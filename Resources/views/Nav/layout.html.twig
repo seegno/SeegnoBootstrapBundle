@@ -63,3 +63,5 @@
 
 <a href="{{ item.uri }}"{{ knp_menu.attributes(linkAttributes) }}>{{ block('label') }}</a>
 {% endblock %}
+
+{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans({}, item.getExtra('translation_domain', 'messages'))|raw }}{% else %}{{ item.label|trans({}, item.getExtra('translation_domain', 'messages')) }}{% endif %}{% endblock %}
