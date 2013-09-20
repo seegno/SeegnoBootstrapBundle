@@ -192,6 +192,19 @@
 {% endspaceless %}
 {% endblock button_row %}
 
+{# Added "help-block" class #}
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="help-block">
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
 {# New helper to parse widget wrapper attributes (used on form_row block) #}
 {% block widget_wrapper_attributes %}
 {% spaceless %}
