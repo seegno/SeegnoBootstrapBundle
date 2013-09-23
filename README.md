@@ -165,6 +165,26 @@ And, the `seegno_bootstrap` menu:
 
 ---
 
-## 4. Advanced
+## 4. Style Guide
+
+You can see how the Bootstrap components will look on your app by accessing `/styleguide` in dev mode.  In order to do it, add the following entry to your `routing_dev.yml` file:
+
+    seegno_bootstrap:
+        resource: "@SeegnoBootstrapBundle/Resources/config/routing.yml"
+
+Next, you'll need to override the Twig template so you can view the style guide with your stylesheets. Create the file `app/Resources/SeegnoBootstrapBundle/views/StyleGuide/index.html.twig` with the following content:
+
+
+    {% extends 'SeegnoBootstrapBundle:StyleGuide:base.html.twig' %}
+
+    {% block stylesheets %}
+        {% stylesheets filter="cssrewrite,?yui_css"
+            'bundles/acmeproject/less/main.less'
+        %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {% endstylesheets %}
+    {% endblock stylesheets %}
+    
+## 5. Advanced
 
 To do.

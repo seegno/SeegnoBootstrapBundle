@@ -1,0 +1,5 @@
+seegno_bootstrap_styleguide:
+    path: /styleguide
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: SeegnoBootstrapBundle:StyleGuide:index.html.twig
