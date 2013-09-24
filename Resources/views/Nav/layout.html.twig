@@ -34,6 +34,8 @@
     <li{{ knp_menu.attributes(attributes) }}>
         {%- if item.extra('include') %}
         {% include item.extra('include') %}
+        {%- elseif item.extra('render') %}
+        {% render(controller(item.extra('render'))) %}
         {%- elseif item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
         {{ block('linkElement') }}
         {%- else %}

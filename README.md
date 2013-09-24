@@ -119,6 +119,7 @@ The `MenuProvider` provides some menu item extras:
 The `twig template` included also have some extras:
 
  * **include**: The template location setted as an extra parameter, i.e., `SeegnoBootstrapBundle:Example:menuitem.html.twig`
+ * **render**: The controller setted as an extra parameter, i.e., `SeegnoBootstrapBundle:Example:menuitem`
 
 ### Pagination
 
@@ -184,7 +185,7 @@ Next, you'll need to override the Twig template so you can view the style guide 
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
         {% endstylesheets %}
     {% endblock stylesheets %}
-    
+
 ## 5. Advanced
 
 To do.
