@@ -1,13 +1,21 @@
 {% extends 'SeegnoBootstrapBundle:Template:sticky.html.twig' %}
 
+{% block title %}SeegnoBootstrapBundle - Styleguide{% endblock %}
+
 {% block header %}
     {% include 'SeegnoBootstrapBundle:StyleGuide:header.html.twig' %}
 {% endblock %}
 
 {% block content %}
-    {% include 'SeegnoBootstrapBundle:StyleGuide:jumbotron.html.twig' %}
+    <div class="alert alert-info">
+        <strong>Heads up!</strong> This styleguide only covers some Bootstrap components.
+    </div>
+
     {% include 'SeegnoBootstrapBundle:StyleGuide:typography.html.twig' %}
+    {% include 'SeegnoBootstrapBundle:StyleGuide:tables.html.twig' %}
+    {% include 'SeegnoBootstrapBundle:StyleGuide:forms.html.twig' %}
     {% include 'SeegnoBootstrapBundle:StyleGuide:buttons.html.twig' %}
     {% include 'SeegnoBootstrapBundle:StyleGuide:navs.html.twig' %}
+    {% include 'SeegnoBootstrapBundle:StyleGuide:jumbotron.html.twig' %}
     {% include 'SeegnoBootstrapBundle:StyleGuide:media.html.twig' %}
 {% endblock %}
