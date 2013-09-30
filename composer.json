@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "description": "Bootstrap utilities for Symfony2",
-    "keywords": ["symfony2", "bootstrap", "css", "templates", "forms", "navs", "menus", "navigation", "alerts", "flashes", "pagination"],
+    "keywords": ["symfony2", "bootstrap", "css", "templates", "forms", "navs", "menus", "navigation", "alerts", "flashes", "pagination", "styleguide"],
     "authors": [
         {
             "name": "Rui Marinho",

@@ -147,9 +147,9 @@ The bundle includes some examples. Check the code on `Controller/ExampleControll
 If you want to see them on your browser, add the following route to your routing file:
 
     # app/routing_dev.yml
-    seegno_bootstrap_bundle:
-        resource: "@SeegnoBootstrapBundle/Controller/"
-        type:     annotation
+    seegno_bootstrap_example:
+        resource: "@SeegnoBootstrapBundle/Resources/config/routing/example.yml"
+        prefix: /seegno/bootstrap
 
 And, the `seegno_bootstrap` menu:
 
@@ -168,10 +168,12 @@ And, the `seegno_bootstrap` menu:
 
 ## 4. Style Guide
 
-You can see how the Bootstrap components will look on your app by accessing `/styleguide` in dev mode.  In order to do it, add the following entry to your `routing_dev.yml` file:
+It's always helfult to have a styleguide. In order to do it, add the following entry to your `routing_dev.yml` file:
 
-    seegno_bootstrap:
-        resource: "@SeegnoBootstrapBundle/Resources/config/routing.yml"
+    # app/routing_dev.yml
+    seegno_bootstrap_styleguide:
+        resource: "@SeegnoBootstrapBundle/Resources/config/routing/styleguide.yml"
+        prefix: /seegno/bootstrap
 
 Next, you'll need to override the Twig template so you can view the style guide with your stylesheets. Create the file `app/Resources/SeegnoBootstrapBundle/views/StyleGuide/index.html.twig` with the following content:
 
@@ -185,6 +187,8 @@ Next, you'll need to override the Twig template so you can view the style guide 
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
         {% endstylesheets %}
     {% endblock stylesheets %}
+
+And now, you can see how the Bootstrap components will look on your app by accessing `/seegno/bootstrap/styleguide` in dev mode.
 
 ## 5. Advanced
 

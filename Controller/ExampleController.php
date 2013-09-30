@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ExampleController extends Controller
 {
     /**
-     * @Route("/seegno/bootstrap/alerts", name="seegno_bootstrap_alerts")
      * @Template()
      */
     public function alertsAction()
@@ -23,7 +22,6 @@ class ExampleController extends Controller
     }
 
     /**
-     * @Route("/seegno/bootstrap/forms", name="seegno_bootstrap_forms")
      * @Template()
      */
     public function formsAction()
@@ -37,7 +35,6 @@ class ExampleController extends Controller
     }
 
     /**
-     * @Route("/seegno/bootstrap/navs", name="seegno_bootstrap_navs")
      * @Template()
      */
     public function navsAction()
@@ -46,7 +43,6 @@ class ExampleController extends Controller
     }
 
     /**
-     * @Route("/seegno/bootstrap/pagination", name="seegno_bootstrap_pagination")
      * @Template()
      */
     public function paginationAction()

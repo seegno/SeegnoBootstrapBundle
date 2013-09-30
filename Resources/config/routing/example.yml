@@ -1,0 +1,15 @@
+seegno_bootstrap_alerts:
+    path: /examples/alerts
+    defaults: { _controller: SeegnoBootstrapBundle:ExampleController:alerts }
+
+seegno_bootstrap_forms:
+    path: /examples/forms
+    defaults: { _controller: SeegnoBootstrapBundle:ExampleController:forms }
+
+seegno_bootstrap_navs:
+    path: /examples/navs
+    defaults: { _controller: SeegnoBootstrapBundle:ExampleController:navs }
+
+seegno_bootstrap_pagination:
+    path: /examples/pagination
+    defaults: { _controller: SeegnoBootstrapBundle:ExampleController:pagination }
