@@ -10,6 +10,8 @@
 <head>
     <meta charset="utf-8">
 
+    {% block head_start %}{% endblock head_start %}
+
     <title>{% block title %}Welcome!{% endblock title %}</title>
 
 {% spaceless %}
@@ -39,18 +41,28 @@
             <script src="{{ asset('bootstrap/assets/js/respond.min.js') }}"></script>
         <![endif]-->
     {% endblock head_javascripts %}
+
+    {% block head_end %}{% endblock head_end %}
 {% endspaceless %}
 </head>
 {% endblock head %}
 
 {% spaceless %}
     {% block body %}
-        <body>
-            {% block container %}
-                <div class="container" role="main">
-                    {% block content %}{% endblock content %}
-                </div>
-            {% endblock container %}
+        <body{{ block('body_attributes') }}>
+            {% block body_start %}{% endblock body_start %}
+
+            {% block body_content %}
+                {% block header %}{% endblock header %}
+
+                {% block container %}
+                    <div class="container" role="main">
+                        {% block content %}{% endblock content %}
+                    </div>
+                {% endblock container %}
+
+                {% block footer %}{% endblock footer %}
+            {% endblock %}
 
             {% block javascripts %}
                 <script src="//code.jquery.com/jquery.js"></script>
@@ -74,6 +86,8 @@
                     <script type="text/javascript" src="{{ asset_url }}"></script>
                 {% endjavascripts %}
             {% endblock javascripts %}
+
+            {% block body_end %}{% endblock body_end %}
         </body>
     {% endblock body %}
 {% endspaceless %}
