@@ -198,7 +198,7 @@
     {% if errors|length > 0 %}
     <ul class="help-block">
         {% for error in errors %}
-            <li>{{ error.message }}</li>
+            <li>{{ error.message|trans({}, translation_domain) }}</li>
         {% endfor %}
     </ul>
     {% endif %}
