@@ -122,7 +122,7 @@
         {% set label = name|humanize %}
     {% endif %}
 
-    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain)|raw }}</label>
 {% endspaceless %}
 {% endblock form_label %}
 
