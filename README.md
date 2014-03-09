@@ -9,7 +9,7 @@ SeegnoBootstrapBundle
 
 1.1. Add the bundle to your `composer.json`:
 
-    $ php composer.phar require seegno/boostrap-bundle dev-master
+    $ php composer.phar require seegno/bootstrap-bundle dev-master
 
 1.2. Register the bundle on `app/AppKernel.php`:
 
@@ -21,7 +21,7 @@ SeegnoBootstrapBundle
         );
     }
 
-1.3. (Optional) Symlink `twbs/bootstrap` and `twbs/boostrap/fonts`. From your `web` folder:
+1.3. (Optional) Symlink `twbs/bootstrap` and `twbs/bootstrap/fonts`. From your `web` folder:
 
     $ ln -s ../vendor/twbs/bootstrap bootstrap
     $ ln -s ../vendor/twbs/bootstrap/fonts fonts
@@ -62,7 +62,7 @@ Render all the `FlashBag` you can include the following *twig function* anywhere
 	{# some_view.html.twig #}
 	{{ seegno_bootstrap_alerts() }}
 
-By default will render the *keys* "success", "info", "warning" and "danger" flashes. You can change this on the *SeegnoBoostrap Configuration*:
+By default will render the *keys* "success", "info", "warning" and "danger" flashes. You can change this on the *SeegnoBootstrap Configuration*:
 
     # app/config.yml
     seegno_bootstrap:
@@ -127,7 +127,7 @@ Pagination takes advantage of [KnpPaginatorBundle](https://github.com/KnpLabs/Kn
 
 We've included two different views: a *default pagination* and a *pager*.
 
-Added it to *KnpPaginatior Configuration*:
+Added it to *KnpPaginator Configuration*:
 
     # app/config.yml
     knp_paginator:

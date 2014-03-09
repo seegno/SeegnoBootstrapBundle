@@ -6,7 +6,7 @@ use Seegno\BootstrapBundle\Form\AbstractFormControlTypeExtension;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * ChechboxType
+ * CheckboxType
  */
 class CheckboxType extends AbstractFormControlTypeExtension
 {
