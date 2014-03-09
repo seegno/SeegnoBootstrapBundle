@@ -27,7 +27,7 @@ class SeegnoBootstrapExtension extends Extension
         }
 
         if ($config['alerts']) {
-            $container->setParameter('seegno_boostrap.alerts', $config['alerts']);
+            $container->setParameter('seegno_bootstrap.alerts', $config['alerts']);
 
             $loader->load('alerts.yml');
         }
