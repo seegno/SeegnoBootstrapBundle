@@ -4,6 +4,6 @@ parameters:
 services:
     seegno_bootstrap.alerts.twig_extension:
         class: %seegno_bootstrap.alerts.twig_extension.class%
-        arguments: [@session, %seegno_boostrap.alerts%]
+        arguments: [@session, %seegno_bootstrap.alerts%]
         tags:
             - { name: twig.extension }
