@@ -3,9 +3,10 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Seegno\BootstrapBundle\Form\AbstractFormControlTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType as BaseChoiceType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * ChoiceType
@@ -17,7 +18,7 @@ class ChoiceType extends AbstractFormControlTypeExtension
      */
     public function getExtendedType()
     {
-        return 'choice';
+        return BaseChoiceType::class;
     }
 
     /**
@@ -31,9 +32,9 @@ class ChoiceType extends AbstractFormControlTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'inline'  => false

@@ -114,7 +114,7 @@
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
     {% endif %}
 
-    {% if label is sameas(false) %}
+    {% if label is same as(false) %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
     {% endif %}
 
@@ -160,7 +160,6 @@
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-
     <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
         {% if widget_wrapper_attr is defined and widget_wrapper_attr %}
             <div {{ block('widget_wrapper_attributes') }}>

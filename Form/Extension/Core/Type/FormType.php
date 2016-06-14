@@ -3,12 +3,13 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType as BaseFormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * ButtonType
+ * FormType.
  */
 class FormType extends AbstractTypeExtension
 {
@@ -31,26 +32,16 @@ class FormType extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'form';
+        return BaseFormType::class;
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * For a "horizontal" form, we can use, for example, the following options:
-     *
-     *     array(
-     *         'label_attr'          => 'control-label col-lg-2',
-     *         'widget_wrapper_attr' => 'col-lg-10',
-     *         // ...
-     *     );
+     * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array('help', 'widget_wrapper_attr'));
+        $resolver->setDefined(array('help', 'widget_wrapper_attr'));
 
-        $resolver->setAllowedTypes(array(
-            'widget_wrapper_attr' => 'array',
-        ));
+        $resolver->setAllowedTypes('widget_wrapper_attr', 'array');
     }
 }

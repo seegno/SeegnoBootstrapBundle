@@ -4,7 +4,7 @@ namespace Seegno\BootstrapBundle\Navs;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\Provider\MenuProviderInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * MenuProvider
@@ -17,9 +17,9 @@ class MenuProvider implements MenuProviderInterface
     protected $factory = null;
 
     /**
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      */
-    protected $securityContext;
+    protected $authorization;
 
     /**
      * @var array
@@ -29,14 +29,14 @@ class MenuProvider implements MenuProviderInterface
 
     /**
      * @param FactoryInterface         $factory
-     * @param SecurityContextInterface $securityContext
+     * @param AuthorizationCheckerInterface $authorization
      * @param array                    $menus
      */
-    public function __construct(FactoryInterface $factory, SecurityContextInterface $securityContext, $menus)
+    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $authorization, $menus)
     {
         $this->factory = $factory;
         $this->menus = $menus;
-        $this->securityContext = $securityContext;
+        $this->authorization = $authorization;
     }
 
     /**
@@ -69,7 +69,7 @@ class MenuProvider implements MenuProviderInterface
             if (isset($itemOptions['extras']['roles'])) {
                 $roles = is_array($itemOptions['extras']['roles']) ? $itemOptions['extras']['roles'] : array($itemOptions['extras']['roles']);
 
-                if (! $this->securityContext->isGranted($roles)) {
+                if (! $this->authorization->isGranted($roles)) {
                     $itemOptions['display'] = false;
                 }
             }

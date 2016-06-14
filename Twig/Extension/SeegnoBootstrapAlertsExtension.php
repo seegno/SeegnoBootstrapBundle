@@ -35,19 +35,19 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return array(
-            'seegno_bootstrap_alerts' => new \Twig_Function_Method($this, 'renderHtmlAlerts', array('is_safe' => array('html'))),
-            'seegno_bootstrap_alert'  => new \Twig_Function_Method($this, 'renderHtmlAlert', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction(
+                'seegno_bootstrap_alerts',
+                array($this, 'renderHtmlAlerts'),
+                array('is_safe' => array('html'), 'needs_environment' => true)
+            ),
+            new \Twig_SimpleFunction(
+                'seegno_bootstrap_alert',
+                array($this, 'renderHtmlAlert'),
+                array('is_safe' => array('html'), 'needs_environment' => true)
+            ),
         );
     }
 
@@ -59,7 +59,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
      *
      * @return string  The HTML
      */
-    public function renderHtmlAlerts($dismissable = true, $strict = true)
+    public function renderHtmlAlerts(\Twig_Environment $environment, $dismissable = true, $strict = true)
     {
         $flashbag = $this->session->getFlashbag();
         $flashes = array();
@@ -75,7 +75,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
         }
 
         if (count($flashes)) {
-            return $this->renderAlerts($flashes, $dismissable);
+            return $this->renderAlerts($environment, $flashes, $dismissable);
         }
     }
 
@@ -88,7 +88,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
      *
      * @return string       The HTML
      */
-    public function renderHtmlAlert($type, $messages = false, $dismissable = true)
+    public function renderHtmlAlert(\Twig_Environment $environment, $type, $messages = false, $dismissable = true)
     {
         if (false === $messages) {
             $messages = $this->session->getFlashbag()->get($type);
@@ -96,7 +96,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
             $messages = (is_array($messages) ? $messages : array($messages));
         }
 
-        return $this->renderAlerts(array($type => $messages), $dismissable);
+        return $this->renderAlerts($environment, array($type => $messages), $dismissable);
     }
 
     /**
@@ -115,7 +115,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
      *
      * @return string  The HTML
      */
-    private function renderAlerts($flashes, $dismissable = true)
+    private function renderAlerts(\Twig_Environment $environment, $flashes, $dismissable = true)
     {
         $alerts = array();
 
@@ -132,7 +132,7 @@ class SeegnoBootstrapAlertsExtension extends \Twig_Extension
             $alerts[] = $params;
         }
 
-        return $this->environment->render('SeegnoBootstrapBundle:Alert:layout.html.twig', array(
+        return $environment->render('SeegnoBootstrapBundle:Alert:layout.html.twig', array(
             'alerts'      => $alerts,
             'dismissable' => $dismissable
         ));
