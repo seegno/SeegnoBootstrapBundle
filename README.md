@@ -1,7 +1,7 @@
 SeegnoBootstrapBundle
 =====================
 
-[Bootstrap](http://getbootstrap.com) utilities for Symfony2
+[Bootstrap](http://getbootstrap.com) utilities for Symfony3
 
 ---
 
