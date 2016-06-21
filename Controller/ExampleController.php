@@ -48,7 +48,7 @@ class ExampleController extends Controller
     public function paginationAction()
     {
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(range(1, 10), $this->get('request')->query->get('page', 1), 1);
+        $pagination = $paginator->paginate(range(1, 10), $this->get('request_stack')->getCurrentRequest()->query->get('page', 1), 1);
 
         return array(
             'pagination' => $pagination

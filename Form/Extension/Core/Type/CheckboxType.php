@@ -3,7 +3,8 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Seegno\BootstrapBundle\Form\AbstractFormControlTypeExtension;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType as BaseCheckboxType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * CheckboxType
@@ -15,13 +16,13 @@ class CheckboxType extends AbstractFormControlTypeExtension
      */
     public function getExtendedType()
     {
-        return 'checkbox';
+        return BaseCheckboxType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'widget_wrapper_attr'  => array('class' => 'checkbox')

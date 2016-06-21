@@ -3,9 +3,10 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\TimeType as BaseTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * TimeType
@@ -17,7 +18,7 @@ class TimeType extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'time';
+        return BaseTimeType::class;
     }
 
     /**
@@ -46,7 +47,7 @@ class TimeType extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'hours_attr'   => array('class' => 'col-xs-4'),

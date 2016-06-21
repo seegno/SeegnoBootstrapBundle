@@ -3,6 +3,7 @@
 namespace Seegno\BootstrapBundle\Form\Extension\Core\Type;
 
 use Seegno\BootstrapBundle\Form\AbstractFormControlTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType as BaseMoneyType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
@@ -16,7 +17,7 @@ class MoneyType extends AbstractFormControlTypeExtension
      */
     public function getExtendedType()
     {
-        return 'money';
+        return BaseMoneyType::class;
     }
 
     /**

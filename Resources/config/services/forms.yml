@@ -14,49 +14,49 @@ services:
     seegno_bootstrap.form_type_extension:
         class: %seegno_bootstrap.form_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: form }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
     seegno_bootstrap.checkbox_type_extension:
         class: %seegno_bootstrap.checkbox_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: checkbox }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CheckboxType }
 
     seegno_bootstrap.choice_type_extension:
         class: %seegno_bootstrap.choice_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: choice }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\ChoiceType }
 
     seegno_bootstrap.date_type_extension:
         class: %seegno_bootstrap.date_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: date }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\DateType }
 
     seegno_bootstrap.integer_type_extension:
         class: %seegno_bootstrap.integer_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: integer }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\IntegerType }
 
     seegno_bootstrap.money_type_extension:
         class: %seegno_bootstrap.money_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: money }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\MoneyType }
 
     seegno_bootstrap.percent_type_extension:
         class: %seegno_bootstrap.percent_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: percent }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\PercentType }
 
     seegno_bootstrap.text_type_extension:
         class: %seegno_bootstrap.text_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: text }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
 
     seegno_bootstrap.time_type_extension:
         class: %seegno_bootstrap.time_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: time }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TimeType }
 
     seegno_bootstrap.button_type_extension:
         class: %seegno_bootstrap.button_type_extension.class%
         tags:
-            - { name: form.type_extension, alias: button }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\ButtonType }
